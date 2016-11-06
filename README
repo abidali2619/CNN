@@ -1,0 +1,98 @@
+Project Title	:  classification of cifar10 dataset using convolution neural network(CNN).
+
+Dataset		:  The CIFAR-10 dataset consists of 60000 32x32 colour images in 10 classes, with 6000 images per class. 
+		   There are 50000 training images and 10000 test images. 
+		   Each image is of size 32 X 32 and 3 channels for RGB.
+
+Output		:  The program will plot accuracy and loss graph with respect to epochs.
+		   The program also prints the final accuracy and test score.		   
+
+Dependencies 	:  for the implementation of the project the following installation is required :
+		   1. iPython 2.7 (or higher)
+		   2. jupyter notebook
+		   3. matplotlib  (for graph plot)
+		   4. theano  (backend)
+		   5. keras
+		  
+****After installation of all this, change the backend from tensorFlow to theano using following command and then change backend to "theano".
+$  vim ./keras/keras.json
+(backend:   "theano")
+
+Run		:  place the datas
+
+CNN model	:  the CNN model has the following layers -
+		   1. CONC	(6 filters of size 5 X 5)
+		   2. ReLU	(Activation Function)
+		   3. MaxPool   (2 X 2)
+		   4. CONV      (16 filters of size 5 X 5
+		   5. ReLU	(Activation Function)
+		   6. MaxPool   (2 X 2)
+		   7. Flatten   (make 16 layers of 5 X 5 into single array of  size 16 X 5 X 5 )
+		   8. DENSE     (120 outputs fully connected layer)	
+		   9. ReLU	(Activation Function)
+		   10.DENSE     (80 outputs fully connected layer)
+		   11.ReLU	(Activation Function)
+		   12.DENSE     (10 outputs fully connected layer)
+		   13.Softmax   (Activation function)
+		   
+
+Procedure 	: The code consist of following major steps :
+		  1. importing all requeried libraries.
+		  2. reading the input from cifar10.npz into numpy array formats.
+		  3. understanding the dimensions of the dataset.
+		  4. reviewing some of data.
+		  5. normalizing data using its mean and standard deviation.
+		  6. setting the parameters of CNN like batch size, learning rate,number of output classes,number of epochs etc.
+		  7. creating the structure of model to use i.e. the architecture of CNN model.
+		  8. compile the model.
+		  9. plot the graphs of accuracy and loss with epochs.
+		  10.display the accuracy of the model.
+		
+
+Theory		: this is some basic theory about what each layer does of the CNN.
+
+CONV (convolution layer): 
+		The convolutional layer is the core building block of a CNN.The layer's parameters consist of a set of learnable filters (or kernels), 
+		which have a small receptive field, but extend through the full depth of the input volume. During the forward pass, 
+		each filter is convolved across the width and height of the input volume, computing the dot product between the entries of the filter and 
+		the input and producing a 2-dimensional activation map of that filter. As a result, the network learns filters that activate when they 
+		see some specific type of feature at some spatial position in the input.
+
+ReLU (Rectified Linear Unit)	:
+		This is a layer of neurons that applies the non-saturating activation function f(x)=max(0,x). 
+		It increases the nonlinear properties of the decision function and of the overall network without affecting 
+		the receptive fields of the convolution layer.
+		Other functions are also used to increase nonlinearity, for example the saturating hyperbolic tangent f(x)=tanh(x)
+		and the sigmoid function. Compared to other functions the usage of ReLU is preferable, because it results in the 
+		neural network training several times faster, without making a significant difference to generalisation accuracy.
+	
+MaxPool		:
+		Another important concept of CNNs is pooling, which is a form of non-linear down-sampling. 
+		There are several non-linear functions to implement pooling among which max pooling is the most common. 
+		It partitions the input image into a set of non-overlapping rectangles and, for each such sub-region, 
+		outputs the maximum. The intuition is that once a feature has been found, its exact location isn't as important 
+		as its rough location relative to other features.The function of the pooling layer is to progressively reduce 
+		the spatial size of the representation to reduce the amount of parameters and computation in the network, 
+		and hence to also control overfitting. It is common to periodically insert a pooling layer in-between successive 
+		conv layers in a CNN architecture. The pooling operation provides a form of translation invariance. 		
+		 
+Flatten 	:
+		this layer just changes the dimensions of the input provide and return the output as flat array of the input.
+		this is generally done in the last few steps just before the fully connected layer.
+
+Dense (Fully connected):
+		Finally, after several convolutional and max pooling layers, the high-level reasoning in the neural network 
+		is done via fully connected layers. Neurons in a fully connected layer have full connections to all activations
+		in the previous layer, as seen in regular Neural Networks. Their activations can hence be computed with a 
+		matrix multiplication followed by a bias offset.
+
+Softmax		:
+		In mathematics, in particular probability theory and related fields, the softmax function, or normalized exponential,
+		is a generalization of the logistic function that "squashes" a K-dimensional vector Z  of arbitrary real values
+		to a K-dimensional vector  of real values in the range (0, 1) that add up to 1. 
+		
+for more information visit : https://en.wikipedia.org/wiki/Convolutional_neural_network
+
+
+
+  
